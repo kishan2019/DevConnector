@@ -8,6 +8,8 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
+//Authenticate user and get token
+
 router.post('/', [
     check('name', 'name is required.')
         .not()
