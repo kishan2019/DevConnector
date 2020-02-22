@@ -1,3 +1,4 @@
 {
-    "mongoURL": "mongodb+srv://kishan123:kishan123@devconnector-wjbim.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURL": "mongodb+srv://kishan123:kishan123@devconnector-wjbim.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
 }
