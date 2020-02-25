@@ -1,5 +1,7 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 export const Register = () => {
     const [formData, setFormData] = useState({
@@ -13,12 +15,29 @@ export const Register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const onSubmitHandler = e => {
+    const onSubmitHandler = async e => {
         e.preventDefault();
         if (password !== password2) {
             console.log('password not matched');
         } else {
-            console.log(formData);
+            const newUser = {
+                name,
+                email,
+                password
+            }
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                const body = JSON.stringify(newUser);
+                const res = await axios.post('api/user', body, config);
+                console.log(res.data);
+
+            } catch (error) {
+                console.error(error.response.data)
+            }
         }
     }
 
