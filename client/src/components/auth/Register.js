@@ -1,15 +1,16 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 
-export const Register = () => {
+const Register = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
         password2: ''
     });
+
+    const { name, email, password, password2 } = formData;
 
     const onChangeHandler = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,28 +21,11 @@ export const Register = () => {
         if (password !== password2) {
             console.log('password not matched');
         } else {
-            const newUser = {
-                name,
-                email,
-                password
-            }
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-                const body = JSON.stringify(newUser);
-                const res = await axios.post('api/user', body, config);
-                console.log(res.data);
+            console.log('SUCCESS');
 
-            } catch (error) {
-                console.error(error.response.data)
-            }
         }
     }
 
-    const { name, email, password, password2 } = formData;
     return (
         <Fragment>
             <section className="container">
@@ -93,3 +77,5 @@ export const Register = () => {
         </Fragment>
     )
 }
+
+export default Register;
